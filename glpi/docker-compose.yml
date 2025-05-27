@@ -13,8 +13,8 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - glpi-config:/var/www/glpi/config
-      - glpi-files:/var/www/glpi/files
+      - idmefv2-glpi-config:/var/www/glpi/config
+      - idmefv2-glpi-files:/var/www/glpi/files
       - type: "bind"
         source: "./mounts/glpi/run"
         target: "/var/glpi/run"
@@ -28,7 +28,7 @@ services:
       MYSQL_USER: "glpi"
       MYSQL_PASSWORD: "glpi"
     volumes:
-      - glpi-db:/var/lib/mysql
+      - idmefv2-glpi-db:/var/lib/mysql
   phpmyadmin:
     container_name: "phpmyadmin"
     image: phpmyadmin
@@ -39,6 +39,6 @@ services:
       - PMA_ARBITRARY=1
 
 volumes:
-  glpi-config:
-  glpi-files:
-  glpi-db:
+  idmefv2-glpi-config:
+  idmefv2-glpi-files:
+  idmefv2-glpi-db:
