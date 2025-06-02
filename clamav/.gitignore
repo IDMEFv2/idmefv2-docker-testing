@@ -1,2 +1,3 @@
 *.log
 containers/clamav/files/metadata.json.tar.gz
+containers/clamav/files/var/
