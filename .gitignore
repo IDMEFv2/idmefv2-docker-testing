@@ -1,2 +1,3 @@
 .env
 .vscode/
+suricata/containers/suricata/files/test-suricata-connector.sh
