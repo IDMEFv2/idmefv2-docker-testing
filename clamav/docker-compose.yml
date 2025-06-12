@@ -15,10 +15,10 @@ services:
   clamav.idmefv2:
     build:
       context: "containers/clamav-idmefv2"
+      args:
+        - CONNECTOR_CONFIG_FILE
     ports:
       - 5678:5678/tcp
-    args:
-      - CONNECTOR_CONFIG_FILE
     volumes:
       - type: "volume"
         source: "clamav_tmp"
