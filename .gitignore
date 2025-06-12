@@ -1,3 +1,4 @@
 .env
 .vscode/
-suricata/containers/suricata/files/test-suricata-connector.sh
+suricata/containers/suricata/files/my-suricata-idmefv2.conf
+clamav/containers/clamav-idmefv2/files/my-clamav-idmefv2.conf
