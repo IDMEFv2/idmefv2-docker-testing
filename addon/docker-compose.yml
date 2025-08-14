@@ -1,0 +1,15 @@
+name: glpi-addon
+
+include:
+  - ../glpi/docker-compose.yml
+
+services:
+  addon:
+    container_name: "addon"
+    build:
+      context: "containers/addon"
+    volumes:
+      - type: "bind"
+        source: "${IDMEFV2_GLPI_ADDON_GIT}"
+        target: "/idmefv2-glpi-addon"
+    command: /entrypoint.sh
