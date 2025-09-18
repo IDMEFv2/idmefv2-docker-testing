@@ -1,44 +1,31 @@
-name: glpi-idmefv2
-
 services:
   glpi:
-    container_name: "glpi"
-    build:
-      context: "containers/glpi"
-      args:
-        BASE_IMAGE: "ghcr.io/glpi-project/glpi:10.0-nightly"
-        HOST_GROUP_ID: "${HOST_GROUP_ID:-1000}"
-        HOST_USER_ID: "${HOST_USER_ID:-1000}"
-    restart: always
-    ports:
-      - "8080:80"
+    image: "glpi/glpi:latest"
+    restart: "unless-stopped"
     volumes:
-      - glpi-config:/var/www/glpi/config
-      - glpi-files:/var/www/glpi/files
-      - type: "bind"
-        source: "./mounts/glpi/run"
-        target: "/var/glpi/run"
+      - "./storage/glpi:/var/glpi:rw"
+    env_file: .env # Pass environment variables from .env file to the container
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "80:80"
+
   db:
-    container_name: "glpi_db"
-    image: "mariadb:10.4"
-    restart: "always"
+    image: "mysql"
+    restart: "unless-stopped"
+    volumes:
+       - "./storage/mysql:/var/lib/mysql"
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
-      MYSQL_DATABASE: "glpi"
-      MYSQL_USER: "glpi"
-      MYSQL_PASSWORD: "glpi"
-    volumes:
-      - glpi-db:/var/lib/mysql
-  phpmyadmin:
-    container_name: "phpmyadmin"
-    image: phpmyadmin
-    restart: always
-    ports:
-      - "8081:80"
-    environment:
-      - PMA_ARBITRARY=1
-
-volumes:
-  glpi-config:
-  glpi-files:
-  glpi-db:
+      MYSQL_DATABASE: ${GLPI_DB_NAME}
+      MYSQL_USER: ${GLPI_DB_USER}
+      MYSQL_PASSWORD: ${GLPI_DB_PASSWORD}
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    expose:
+      - "3306"
