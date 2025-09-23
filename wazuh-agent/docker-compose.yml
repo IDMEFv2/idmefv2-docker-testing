@@ -1,0 +1,6 @@
+name: wazuh
+
+services:
+  wazuh.agent:
+    build:
+      context: "containers/wazuh-agent"

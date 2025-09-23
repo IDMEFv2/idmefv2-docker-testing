@@ -3,7 +3,14 @@ services:
     image: "${GLPI_DOCKER_IMAGE:-glpi/glpi:latest}"
     restart: "unless-stopped"
     volumes:
-      - "./storage/glpi:/var/glpi:rw"
+      - type: "bind"
+        source: "./storage/glpi"
+        target: "/var/glpi"
+      - type: "bind"
+        source: "./storage/glpi-plugins"
+        target: "/var/www/glpi/plugins"
+        bind:
+          create_host_path: true
     env_file: .env # Pass environment variables from .env file to the container
     depends_on:
       db:
