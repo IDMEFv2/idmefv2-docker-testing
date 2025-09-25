@@ -1,6 +1,0 @@
-name: wazuhglpi
-
-include:
-  - ${WAZUH_DOCKER:?FOO}
-  - ../wazuh-agent/docker-compose.yml
-  - ../glpi/docker-compose.yml
