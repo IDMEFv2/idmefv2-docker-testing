@@ -1,0 +1,18 @@
+services:
+  zm:
+    image: "milefork/zoneminder:1.36"
+    env_file: .env
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+  db:
+    image: "mysql"
+    restart: "unless-stopped"
+    command: --disable-log-bin
+    volumes:
+       - "./storage/mysql:/var/lib/mysql"
+    env_file: .env
+    expose:
+      - "3306"
