@@ -1,12 +1,25 @@
+name: zoneminder
+
+include:
+  - ../testserver/docker-compose.yml
+
 services:
   zm:
-    image: "milefork/zoneminder:1.36"
+#    image: "milefork/zoneminder:1.36"
+    build:
+      context: "containers/zoneminder"
+      args:
+        - CONNECTOR_CONFIG_FILE
     env_file: .env
     ports:
       - "8080:80"
     depends_on:
       - db
     privileged: true
+    volumes:
+      - type: "bind"
+        source: "${IDMEFV2_CONNECTORS_GIT}"
+        target: "/idmefv2-connectors"
 
   db:
     image: "mysql"
