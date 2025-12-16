@@ -12,5 +12,6 @@ ARG CONNECTOR_CONFIG_FILE=./files/zoneminder-idmefv2.conf
 COPY ${CONNECTOR_CONFIG_FILE} /etc/zoneminder-idmefv2.conf
 
 COPY --chmod=0755 ./files/entrypoint.sh /
+COPY --chmod=0755 ./files/zm2idmefv2.sh /
 
 CMD [ "/entrypoint.sh" ]
