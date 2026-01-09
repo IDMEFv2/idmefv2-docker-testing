@@ -2,6 +2,8 @@ name: glpi-addon
 
 include:
   - ../glpi/docker-compose.yml
+  - ../testserver/docker-compose.yml
+  - ../phpmyadmin/docker-compose.yml
 
 services:
   addon:
