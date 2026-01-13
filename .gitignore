@@ -2,3 +2,4 @@
 .vscode/
 clamav/containers/clamav-idmefv2/files/my-clamav-idmefv2.conf
 suricata+connector/containers/suricata-idmefv2/files/my-suricata-idmefv2.conf
+zoneminder+connector/containers/zoneminder/files/my-zoneminder-idmefv2.conf
