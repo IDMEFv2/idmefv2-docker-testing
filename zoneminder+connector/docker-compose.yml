@@ -19,16 +19,16 @@ services:
       - type: "bind"
         source: "${IDMEFV2_CONNECTORS_GIT}"
         target: "/idmefv2-connectors"
-      - type: "bind"
-        source: "./storage/zm/log/zm"
-        target: "/var/log/zm"
-        bind:
-          create_host_path: true
-      - type: "bind"
-        source: "./storage/zm/log/idmefv2"
-        target: "/var/log/idmefv2"
-        bind:
-          create_host_path: true
+      # - type: "bind"
+      #   source: "./storage/zm/log/zm"
+      #   target: "/var/log/zm"
+      #   bind:
+      #     create_host_path: true
+      # - type: "bind"
+      #   source: "./storage/zm/log/idmefv2"
+      #   target: "/var/log/idmefv2"
+      #   bind:
+      #     create_host_path: true
   db:
     image: "mysql"
     restart: "unless-stopped"
