@@ -1,0 +1,27 @@
+name: motion
+
+services:
+  motion:
+    container_name: motion
+    build:
+      context: "containers/motion"
+    restart: "unless-stopped"
+    healthcheck:
+      test: ["CMD", "health.sh"]
+    devices:
+      - ${MOTION_VIDEO_DEVICE}:/dev/video0
+    env_file: .env
+    ports:
+      - 8080:8080
+      - 8081:8081
+    volumes:
+    volumes:
+      - type: "bind"
+        source: "${IDMEFV2_CONNECTORS_GIT}"
+        target: "/idmefv2-connectors"
+      - type: "volume"
+        source: "motionjson_log"
+        target: "/var/log/motion/"
+
+volumes:
+  motionjson_log:
