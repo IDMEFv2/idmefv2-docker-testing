@@ -28,10 +28,10 @@ This application environment variables are:
 
 This application uses the following volumes:
 
-| Volume type  | Source                                          | Target                                          |
-| ------------ | ----------------------------------------------- | ----------------------------------------------- |
-| volume       | `clamav_tmp                                     | `/var/tmp/clamav`                               |
-| bin          | `${IDMEFV2_CONNECTORS_GIT}`                     | `/idmefv2-connectors`                           |
+| Service          | Volume type  | Source                                          | Target                                          |
+| ---------------- | ------------ | ----------------------------------------------- | ----------------------------------------------- |
+| *                | volume       | `clamav_tmp`                                    | `/var/tmp/clamav`                               |
+| clamav.idmefv2   | bind         | `${IDMEFV2_CONNECTORS_GIT}`                     | `/idmefv2-connectors`                           |
 
 ## Exposed interfaces
 
