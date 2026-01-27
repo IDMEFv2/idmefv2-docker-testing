@@ -1,7 +1,7 @@
 name: wazuh
 
 include:
-  - ${WAZUH_DOCKER:?FOO}
+  - ${WAZUH_DOCKER_GIT}/single-node/docker-compose.yml
   - ../wazuh-agent/docker-compose.yml
   - ../testserver/docker-compose.yml
 
