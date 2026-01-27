@@ -35,4 +35,4 @@ A specific configuration file for `wazuh-agent` is provided in [./containers/waz
 - Wazuh manager hostname and port
 - a new entry for *File integrity monitoring*: this directory is located in `/test`
 
-A shell script is provided in [`./containers/wazuh-agent/files/test-wazuh-connector.sh`](./containers/wazuh-agent/files/test-wazuh-connector.sh). This script generates Wazuh file integrity monitoring alerts by creating a directory and modifying a file in `/test` which is monitored by Wazuh agent according to the specific configuration file.
+A shell script is provided in [`./containers/wazuh-agent/files/test-wazuh-connector.sh`](./containers/wazuh-agent/files/test-wazuh-connector.sh). This script generates Wazuh file integrity monitoring alerts by creating and modifying a file in `/test` (which is monitored by Wazuh agent according to the specific configuration file).
