@@ -21,7 +21,6 @@ This application environment variables are:
 | Variable                     | Required | Default value                       | Description                                                                   |
 | ---------------------------- | -------- | ----------------------------------- | ----------------------------------------------------------------------------- |
 | GLPI_DOCKER_IMAGE            | No       | `glpi/glpi:latest`                  | GLPI docker image including tag                                               |
-| CONNECTOR_CONFIG_FILE        | No       | `./files/clamav-idmefv2.conf`       | Connector configuration file                                                  |
 | GLPI_DB_HOST                 | Yes      | None                                | MySQL server hostname (for instance `db`)                                     |
 | GLPI_DB_PORT                 | Yes      | None                                | MySQL server port (for instance `3306`)                                       |
 | GLPI_DB_NAME                 | Yes      | None                                | MySQL GLPI database name (for instance `glpi`)                                |
