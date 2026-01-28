@@ -16,7 +16,7 @@ This application defines the following services:
 This application includes the following services:
 - `testserver`: a simple Python HTTP server validating IDMEFv2 messages received in POST requests (see [../testserver](../testserver))
 - `wazuh-agent`: the Wazuh agent (see [../wazuh-agent](../wazuh-agent))
-- `wazuh-single-node`: the Wazuh servers: manager, indexer, dashboard (see [${WAZUH_DOCKER_GIT}/single-node](${WAZUH_DOCKER_GIT}/single-node))
+- `wazuh-single-node`: the Wazuh servers: manager, indexer, dashboard (see https://github.com/wazuh/wazuh-docker/tree/main/single-node)
 
 ## Environment variables
 
