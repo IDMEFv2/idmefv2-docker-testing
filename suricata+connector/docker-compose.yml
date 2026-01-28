@@ -10,7 +10,7 @@ services:
       context: "containers/suricata"
     volumes:
       - type: "volume"
-        source: "suricata_log"
+        source: "suricata_logs"
         target: "/var/log/suricata/"
     network_mode: "host"
     command: /entrypoint.sh -i ${INTERFACE}
@@ -22,7 +22,7 @@ services:
         - CONNECTOR_CONFIG_FILE
     volumes:
       - type: "volume"
-        source: "suricata_log"
+        source: "suricata_logs"
         target: "/var/log/suricata/"
       - type: "bind"
         source: "${IDMEFV2_CONNECTORS_GIT}"
@@ -31,4 +31,4 @@ services:
     command: /entrypoint.sh
 
 volumes:
-  suricata_log:
+  suricata_logs:
