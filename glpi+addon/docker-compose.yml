@@ -5,12 +5,12 @@ include:
   - ../testserver/docker-compose.yml
 
 services:
-  addon:
+  glpi-addon:
     container_name: "addon"
     build:
       context: "containers/addon"
     ports:
-      - ${ADDON_HOST_PORT:-5000}:${ADDON_CONTAINER_PORT:-5000}
+      - 5000:5000
     volumes:
       - type: "bind"
         source: "${IDMEFV2_GLPI_ADDON_GIT}"
