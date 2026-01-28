@@ -2,7 +2,8 @@
 
 ## Prerequisites
 
-Before starting this application, the https://github.com/IDMEFv2/idmefv2-connectors github repository must be cloned.
+Before starting this application, a github repository must be cloned:
+- https://github.com/IDMEFv2/idmefv2-connectors
 
 ## Services
 
