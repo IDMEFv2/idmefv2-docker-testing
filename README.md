@@ -18,6 +18,7 @@ Current application list:
 | [clamav+connector](./clamav+connector) | [ClamAV] antivirus + IDMEFv2 connector  | testserver  |
 | [glpi](./glpi) | [GLPI] asset management |   |
 | [glpi+addon](./glpi+addon) | IDMEFv2 add-on for message enrichment  | glpi  |
+| [kismet+connector](./kismet+connector) | Kismet + IDMEFv2 connector  | testserver  |
 | [modsecurity+connector](./modsecurity+connector) | Modsecurity + IDMEFv2 connector  | testserver  |
 | [prometheus+connector](./prometheus+connector) | Prometheus + IDMEFv2 connector  | testserver  |
 | [suricata+connector](./suricata+connector) | [Suricata] NIDS + IDMEFv2 connector | testserver  |
@@ -28,6 +29,7 @@ Current application list:
 
 [ClamAV]: https://www.clamav.net/
 [GLPI]: https://github.com/glpi-project
+[Kismet]: https://www.kismetwireless.net/
 [Modsecurity]: https://modsecurity.org/
 [Prometheus]: https://prometheus.io/
 [Suricata]: https://suricata.io/

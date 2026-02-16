@@ -1,0 +1,67 @@
+name: kismet
+
+services:
+  kismet:
+    build:
+      context: .
+      dockerfile: ./kismet/Dockerfile
+    container_name: kismet
+    ports:
+      - "2501:2501"
+    volumes:
+      - ./kismet/kismet_site.conf:/usr/local/etc/kismet_site.conf:ro
+      - ./pcaps:/pcaps
+    command: [
+      "kismet",
+      "--no-ncurses",
+      "-c", "pcapfile:/pcaps/"
+    ]
+    networks:
+      - connector_net
+
+  alert-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.alert
+    container_name: alert-api
+    ports:
+      - "8685:8000"
+    environment:
+      - KISMET_URL=http://kismet:2501
+      - KISMET_USER=admin
+      - KISMET_PASS=admin
+    volumes:
+      - ./pcaps:/pcaps
+    depends_on:
+      kismet:
+        condition: service_started
+    networks:
+      - connector_net
+
+  kismet.idmefv2:
+    build:
+      context: "containers/kismet-idmefv2"
+    volumes:
+      - type: "bind"
+        source: "${IDMEFV2_CONNECTORS_GIT}"
+        target: "/idmefv2-connectors"
+      - type: "bind"
+        source: "./containers/kismet-idmefv2/files/kismet-idmefv2.conf"
+        target: "/etc/kismet-idmefv2.conf"
+    networks:
+      - connector_net
+    command: /entrypoint.sh
+    depends_on:
+      kismet:
+        condition: service_started
+
+  testserver.idmefv2:
+    extends:
+      file: ../testserver/docker-compose.yml
+      service: testserver.idmefv2
+    networks:
+      - connector_net
+
+networks:
+  connector_net:
+    driver: bridge
