@@ -1,0 +1,16 @@
+[Misc]
+Daemon = no
+
+[Log]
+Log Severity = info
+Print Severity = info
+Log File = /var/log/samhain/samhain.log
+
+[ReadOnly]
+dir = /monitored/sensitive
+dir = /etc
+file = /etc/passwd
+
+[EventSeverity]
+SeverityReadOnly = CRIT
+SeverityLogFiles = WARN
