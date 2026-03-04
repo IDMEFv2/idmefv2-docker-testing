@@ -1,0 +1,41 @@
+services:
+  samhain:
+    build:
+      context: containers/samhain
+    container_name: samhain
+    hostname: samhain-hids
+    cap_add:
+      - SYS_PTRACE
+      - DAC_READ_SEARCH
+    volumes:
+      - ./logs:/var/log/samhain
+      - samhain-data:/var/lib/samhain
+    restart: unless-stopped
+    networks:
+      - connector_net
+
+  samhain.idmefv2:
+    build:
+      context: containers/samhain-idmefv2
+    volumes:
+      - ./logs:/var/log/samhain 
+      - ${IDMEFV2_CONNECTORS_GIT}:/idmefv2-connectors
+    networks:
+      - connector_net
+    depends_on:
+      - samhain
+
+  testserver.idmefv2:
+    extends:
+      file: ../testserver/docker-compose.yml
+      service: testserver.idmefv2
+    networks:
+      - connector_net
+
+networks:
+  connector_net:
+    driver: bridge
+
+volumes:
+  samhain-data:
+    driver: local

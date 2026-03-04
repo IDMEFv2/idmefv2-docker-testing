@@ -21,6 +21,7 @@ Current application list:
 | [kismet+connector](./kismet+connector) | Kismet + IDMEFv2 connector  | testserver  |
 | [modsecurity+connector](./modsecurity+connector) | Modsecurity + IDMEFv2 connector  | testserver  |
 | [prometheus+connector](./prometheus+connector) | Prometheus + IDMEFv2 connector  | testserver  |
+| [samhain+connector](./samhain+connector) | Samhain + IDMEFv2 connector  | testserver  |
 | [suricata+connector](./suricata+connector) | [Suricata] NIDS + IDMEFv2 connector | testserver  |
 | [testserver](./testserver) | a simple HTTP server to validate IDMEFv2 messages  |   |
 | [wazuh-agent](./wazuh-agent) | [Wazuh] HIDS agent  |   |
@@ -32,6 +33,7 @@ Current application list:
 [Kismet]: https://www.kismetwireless.net/
 [Modsecurity]: https://modsecurity.org/
 [Prometheus]: https://prometheus.io/
+[Samhain]: https://www.samhain.de/samhain.html
 [Suricata]: https://suricata.io/
 [Wazuh]: https://wazuh.com/
 [Zoneminder]: https://zoneminder.com/
