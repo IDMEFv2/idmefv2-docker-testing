@@ -1,0 +1,143 @@
+name: tpot
+
+services:
+
+#########################################
+#### T-Pot Init
+#########################################
+
+  tpotinit:
+    container_name: tpotinit
+    env_file: .env
+    restart: always
+    stop_grace_period: 60s
+    tmpfs:
+      - /tmp/etc:uid=2000,gid=2000
+      - /tmp/:uid=2000,gid=2000
+    network_mode: "host"
+    cap_add:
+      - NET_ADMIN
+    image: ${TPOT_REPO}/tpotinit:${TPOT_VERSION}
+    pull_policy: ${TPOT_PULL_POLICY}
+    volumes:
+      - ./docker-compose.yml:/tmp/tpot/docker-compose.yml:ro
+      - ${TPOT_DATA_PATH}/blackhole:/etc/blackhole
+      - ${TPOT_DATA_PATH}:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+##################
+#### Honeypot
+##################
+
+  cowrie:
+    container_name: cowrie
+    restart: always
+    depends_on:
+      tpotinit:
+        condition: service_healthy
+    networks:
+      - connector_net
+    ports:
+      - "22:22"
+      - "23:23"
+    image: ${TPOT_REPO}/cowrie:${TPOT_VERSION}
+    pull_policy: ${TPOT_PULL_POLICY}
+    read_only: true
+    tmpfs:
+      - /tmp/cowrie:uid=2000,gid=2000
+    volumes:
+      - ${TPOT_DATA_PATH}/cowrie/downloads:/home/cowrie/cowrie/dl
+      - ${TPOT_DATA_PATH}/cowrie/keys:/home/cowrie/cowrie/etc
+      - ${TPOT_DATA_PATH}/cowrie/log:/home/cowrie/cowrie/log
+      - ${TPOT_DATA_PATH}/cowrie/log/tty:/home/cowrie/cowrie/log/tty
+
+##################
+#### ELK Stack
+##################
+
+  elasticsearch:
+    container_name: elasticsearch
+    restart: always
+    depends_on:
+      tpotinit:
+        condition: service_healthy
+    environment:
+      - node.name=tpot
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+    networks:
+      - connector_net
+    ports:
+      - "127.0.0.1:64298:9200"
+    mem_limit: 1500m
+    image: ${TPOT_REPO}/elasticsearch:${TPOT_VERSION}
+    pull_policy: ${TPOT_PULL_POLICY}
+    volumes:
+      - ${TPOT_DATA_PATH}:/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9200/_cluster/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+      start_period: 30s
+
+  logstash:
+    container_name: logstash
+    restart: always
+    depends_on:
+      tpotinit:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - LS_JAVA_OPTS=-Xms768m -Xmx768m
+      - TPOT_TYPE=HIVE
+      - LS_SSL_VERIFICATION=none
+      - MY_EXTIP=127.0.0.1
+      - MY_HOSTNAME=tpot-idmef
+    networks:
+      - connector_net
+    ports:
+      - "127.0.0.1:64305:64305"
+    mem_limit: 1200m
+    image: ${TPOT_REPO}/logstash:${TPOT_VERSION}
+    pull_policy: ${TPOT_PULL_POLICY}
+    volumes:
+      - ${TPOT_DATA_PATH}:/data
+
+##################
+#### IDMEFv2 Connector
+##################
+
+  tpot.idmefv2:
+    container_name: tpot-idmefv2
+    build:
+      context: "containers/tpot-idmefv2"
+      args:
+        - CONNECTOR_CONFIG_FILE
+    volumes:
+      - type: "bind"
+        source: "${IDMEFV2_CONNECTORS_GIT}"
+        target: "/idmefv2-connectors"
+    networks:
+      - connector_net
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    command: /entrypoint.sh
+
+##################
+#### Test Server
+##################
+
+  testserver.idmefv2:
+    extends:
+      file: ../testserver/docker-compose.yml
+      service: testserver.idmefv2
+    networks:
+      - connector_net
+
+networks:
+  connector_net:
+    driver: bridge
