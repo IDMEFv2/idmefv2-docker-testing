@@ -24,6 +24,7 @@ Current application list:
 | [samhain+connector](./samhain+connector) | Samhain + IDMEFv2 connector  | testserver  |
 | [suricata+connector](./suricata+connector) | [Suricata] NIDS + IDMEFv2 connector | testserver  |
 | [testserver](./testserver) | a simple HTTP server to validate IDMEFv2 messages  |   |
+| [t-pot](./t-pot+connector) | T-pot + IDMEFv2 connector  |   |
 | [wazuh-agent](./wazuh-agent) | [Wazuh] HIDS agent  |   |
 | [wazuh+wazuh-agent+connector](./wazuh+wazuh-agent+connector) | [Wazuh] NIDS + IDMEFv2 connector | wazuh, wazuh-agent, testserver  |
 | [zoneminder+connector](./zoneminder+connector) | [Zoneminder]  + IDMEFv2 connector | testserver  |
@@ -35,6 +36,7 @@ Current application list:
 [Prometheus]: https://prometheus.io/
 [Samhain]: https://www.samhain.de/samhain.html
 [Suricata]: https://suricata.io/
+[T-pot]: https://github.com/telekom-security/tpotce
 [Wazuh]: https://wazuh.com/
 [Zoneminder]: https://zoneminder.com/
 
