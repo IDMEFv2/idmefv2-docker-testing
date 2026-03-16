@@ -7,7 +7,8 @@ services:
     depends_on:
       es01:
         condition: service_healthy
-    image: jertel/elastalert2
+    build:
+       context: ./containers/elastalert
     volumes:
       - type: "bind"
         source: "./storage/elastalert/config.yaml"
@@ -15,3 +16,6 @@ services:
       - type: "bind"
         source: "./storage/elastalert/rules"
         target: "/opt/elastalert/rules"
+      - type: "bind"
+        source: "${IDMEFV2_CONNECTORS_GIT}"
+        target: "/idmefv2-connectors"

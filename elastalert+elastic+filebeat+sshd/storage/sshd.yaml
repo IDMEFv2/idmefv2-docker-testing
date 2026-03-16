@@ -1,0 +1,4 @@
+name: "sshd IDMEFv2 alert"
+type: any
+
+alert: "idmefv2.connectors.elastalert2.IDMEFv2Alerter"
