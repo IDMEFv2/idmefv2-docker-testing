@@ -1,4 +1,8 @@
 name: "sshd IDMEFv2 alert"
+
+index: filebeat-*
+
 type: any
 
 alert: "idmefv2.connectors.elastalert2.IDMEFv2Alerter"
+idmefv2_url: http://testserver.idmefv2:9999
