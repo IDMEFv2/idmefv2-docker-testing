@@ -1,4 +1,4 @@
-name: "sshd IDMEFv2 alert"
+name: "sshd auth failure"
 
 index: filebeat-*
 
@@ -6,3 +6,15 @@ type: any
 
 alert: "idmefv2.connectors.elastalert2.IDMEFv2Alerter"
 idmefv2_url: http://testserver.idmefv2:9999
+idmefv2_template:  |-
+  {
+    "Version": "2.D.V04",
+    "ID": "{{ match.agent.id }}",
+    "CreateTime": "{{ match['@timestamp'] }}",
+    "Category": ["Malicious.System"],
+    "Description": "{{ rule.name }}",
+    "Analyzer": {
+      "Name": "{{ match.agent.type }}",
+      "IP": "{{ match.source.ip }}"
+    }
+  }
