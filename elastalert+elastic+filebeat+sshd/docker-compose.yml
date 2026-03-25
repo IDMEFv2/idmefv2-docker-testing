@@ -1,6 +1,6 @@
 
 include:
-  - ../elastic+filebeat+sshd/docker-compose.single-node.yml
+  - ../elastic+filebeat+sshd/docker-compose.yml
   - ../testserver/docker-compose.yml
 
 services:
