@@ -16,6 +16,7 @@ Current application list:
 | application        | description           | includes other application? |
 | ------------- |-------------| -----|
 | [clamav+connector](./clamav+connector) | [ClamAV] antivirus + IDMEFv2 connector  | testserver  |
+| [elastalert+elastic+filebeat+sshd](./elastalert+elastic+filebeat+sshd) | [elastalert2] + IDMEFv2 alerter | elastic+filebeat+sshd, testserver |
 | [glpi](./glpi) | [GLPI] asset management |   |
 | [glpi+addon](./glpi+addon) | IDMEFv2 add-on for message enrichment  | glpi  |
 | [kismet+connector](./kismet+connector) | Kismet + IDMEFv2 connector  | testserver  |
@@ -30,6 +31,7 @@ Current application list:
 | [zoneminder+connector](./zoneminder+connector) | [Zoneminder]  + IDMEFv2 connector | testserver  |
 
 [ClamAV]: https://www.clamav.net/
+[elastalert2]: https://github.com/jertel/elastalert2
 [GLPI]: https://github.com/glpi-project
 [Kismet]: https://www.kismetwireless.net/
 [Modsecurity]: https://modsecurity.org/

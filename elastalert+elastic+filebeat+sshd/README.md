@@ -54,3 +54,34 @@ Permission denied, please try again.
 unknown@localhost's password:
 unknown@localhost: Permission denied (publickey,password).
 ```
+
+The log of the `testserver` should look like:
+
+```
+INFO:root:POST request
+Path: /
+Headers:
+Host: testserver.idmefv2:9999
+User-Agent: python-requests/2.33.0
+Accept-Encoding: gzip, deflate, zstd
+Accept: */*
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 260
+
+
+Body:
+{
+  "Version": "2.D.V04",
+  "ID": "fd209436-6c2c-4534-82fd-fb5bab0645d7",
+  "CreateTime": "2026-03-26T15:35:46.853Z",
+  "Category": ["Malicious.System"],
+  "Description": "sshd auth failure",
+  "Analyzer": {
+    "Name": "filebeat",
+    "IP": "172.19.0.1"
+  }
+}
+
+172.19.0.8 - - [26/Mar/2026 15:36:07] "POST / HTTP/1.1" 200 -
+```
