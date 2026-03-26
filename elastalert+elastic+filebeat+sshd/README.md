@@ -1,4 +1,4 @@
-# IDMEFv2 docker testing: elastic + filebeat + sshd
+# IDMEFv2 docker testing: elastalert + elastic + filebeat + sshd
 
 ## Prerequisites
 
