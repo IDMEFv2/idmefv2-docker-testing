@@ -4,6 +4,11 @@ index: filebeat-*
 
 type: any
 
+filter:
+  - query:
+      query_string:
+        query: "system.auth.ssh.event:Invalid"
+
 alert: "idmefv2.connectors.elastalert2.IDMEFv2Alerter"
 idmefv2_url: http://testserver.idmefv2:9999
 idmefv2_template:  |-
