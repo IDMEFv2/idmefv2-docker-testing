@@ -1,5 +1,8 @@
 name: motion
 
+include:
+  - ../testserver/docker-compose.yml
+
 services:
   motion:
     container_name: motion
