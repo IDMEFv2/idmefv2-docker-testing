@@ -1,5 +1,8 @@
 name: motion
 
+include:
+  - ../testserver/docker-compose.yml
+
 services:
   motion:
     container_name: motion
@@ -10,7 +13,7 @@ services:
         - CONNECTOR_CONFIG_FILE
     # restart: "unless-stopped"
     healthcheck:
-      test: ["CMD", "health.sh"]
+      test: ["CMD", "/health.sh"]
     devices:
       - ${MOTION_VIDEO_DEVICE}:/dev/video0
     ports:
