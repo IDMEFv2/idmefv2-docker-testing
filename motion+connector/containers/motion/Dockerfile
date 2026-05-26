@@ -13,7 +13,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --upgrade pip
 
 # install IDMEFv2 python library
-RUN pip install --extra-index-url https://test.pypi.org/simple/ idmefv2
+# RUN pip install --extra-index-url https://test.pypi.org/simple/ idmefv2
 
 ARG CONNECTOR_CONFIG_FILE=./files/motion-idmefv2.conf
 COPY ${CONNECTOR_CONFIG_FILE} /etc/motion-idmefv2.conf
