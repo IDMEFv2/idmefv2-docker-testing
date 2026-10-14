@@ -6,4 +6,4 @@ set -e
 cd /idmefv2-connectors
 pip install --break-system-packages --force-reinstall .
 
-python3 -m idmefv2.connectors.tpot -c /etc/tpot-idmefv2.conf
+python3 -m idmefv2.connectors.t-pot -c /etc/tpot-idmefv2.conf

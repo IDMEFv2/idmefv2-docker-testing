@@ -91,7 +91,7 @@ services:
       elasticsearch:
         condition: service_healthy
     environment:
-      - LS_JAVA_OPTS=-Xms768m -Xmx768m
+      - LS_JAVA_OPTS=-Xms900m -Xmx900m
       - TPOT_TYPE=HIVE
       - LS_SSL_VERIFICATION=none
       - MY_EXTIP=127.0.0.1

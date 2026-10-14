@@ -1,5 +1,5 @@
 # Dockerfile for Samhain HIDS
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 # Avoid interactive prompts during installation
 ENV DEBIAN_FRONTEND=noninteractive
