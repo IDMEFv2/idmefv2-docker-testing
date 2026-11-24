@@ -7,7 +7,7 @@ This environment allows testing the Samhain HIDS integrated with an IDMEFv2 conn
 Before starting this application, a github repository must be cloned:
 - https://github.com/princi97/idmefv2-connectors.git
 
-After that, open to open the samhain+connector\logs folder and delete the placeholder.txt file.
+After that, open the `samhain+connector/logs` folder and delete the `placeholder.txt` file.
 
 ## Services
 
